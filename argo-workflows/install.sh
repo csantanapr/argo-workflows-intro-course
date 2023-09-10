@@ -1,8 +1,10 @@
+#!/bin/sh
 echo
 echo "It typically takes between 1m and 2m to get Argo Workflows ready."
 echo
 echo "Any problems? Visit the repo to open an issue: https://github.com/csantanapr/argo-workflows-intro-course/"
 echo
+
 
 echo "1. Installing Argo Workflows..."
 
@@ -16,12 +18,14 @@ kubectl apply -f https://raw.githubusercontent.com/csantanapr/argo-workflows-int
 kubectl apply -f https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-course/master/config/argo-workflows/patchpod.yaml > /dev/null
 kubectl apply -f https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-course/master/config/argo-workflows/workflows-controller-configmap.yaml > /dev/null
 
-echo "2. Installing Argo CLI..."
-
-curl -sLO https://github.com/argoproj/argo-workflows/releases/download/${ARGO_WORKFLOWS_VERSION}/argo-linux-amd64.gz
-gunzip argo-linux-amd64.gz
-chmod +x argo-linux-amd64
-mv ./argo-linux-amd64 /usr/local/bin/argo
+uname_m=$(uname -m)
+if [ "${uname_m}" == "amd64" ]; then
+  echo "2. Installing Argo CLI..."
+  curl -sLO https://github.com/argoproj/argo-workflows/releases/download/${ARGO_WORKFLOWS_VERSION}/argo-linux-amd64.gz
+  gunzip argo-linux-amd64.gz
+  chmod +x argo-linux-amd64
+  mv ./argo-linux-amd64 /usr/local/bin/argo
+fi
 
 echo "3. Starting Argo Server..."
 
