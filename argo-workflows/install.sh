@@ -75,5 +75,9 @@ echo "4. Waiting for the Workflow Controller to be available..."
 kubectl rollout restart deployment workflow-controller  > /dev/null
 kubectl wait deploy/workflow-controller --for condition=Available --timeout 2m > /dev/null
 
+
+echo "5. Updating manifests and installing sync-worskshop.sh"
+curl -s -L https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-course/master/argo-workflows/sync-workshop.sh | bash
+
 echo
 echo "Ready"
