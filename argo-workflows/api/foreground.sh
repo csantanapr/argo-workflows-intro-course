@@ -1,1 +1,1 @@
-curl -s https://raw.githubusercontent.com/pipekit/argo-workflows-intro-course/master/argo-workflows/install.sh|AUTHCLIENT=1 sh
+curl -s https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-course/master/argo-workflows/install.sh|AUTHCLIENT=1 sh
