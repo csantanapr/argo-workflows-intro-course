@@ -76,7 +76,14 @@ kubectl rollout restart deployment workflow-controller  > /dev/null
 kubectl wait deploy/workflow-controller --for condition=Available --timeout 2m > /dev/null
 
 
-echo "5. Updating manifests and installing sync-worskshop.sh"
+echo "5. Copy Argo Workflow template examples"
+temp_dir=$(mktemp -u)
+git clone -q --depth 1 https://github.com/argoproj/argo-workflows $temp_dir
+mkdir -p /eks-workshop/manifests/modules/automation/workflows/argo/examples
+cp -R $temp_dir/examples/* /eks-workshop/manifests/modules/automation/workflows/argo/examples/ > /dev/null
+
+
+echo "6. Updating manifests and installing sync-worskshop.sh"
 curl -s -L https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-course/master/argo-workflows/sync-workshop.sh | bash
 
 echo
