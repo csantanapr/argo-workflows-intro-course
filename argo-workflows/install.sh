@@ -24,7 +24,7 @@ if [ "${uname_m}" == "amd64" ]; then
   curl -sLO https://github.com/argoproj/argo-workflows/releases/download/${ARGO_WORKFLOWS_VERSION}/argo-linux-amd64.gz
   gunzip argo-linux-amd64.gz
   chmod +x argo-linux-amd64
-  mv ./argo-linux-amd64 /usr/local/bin/argo
+  sudo mv ./argo-linux-amd64 /usr/local/bin/argo
 fi
 
 echo "3. Starting Argo Server..."
